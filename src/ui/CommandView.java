@@ -2,6 +2,7 @@ package ui;
 
 import algorithms.BubbleSort;
 import algorithms.QuickSort;
+import algorithms.RafSort;
 import utils.Shuffler;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class CommandView extends JPanel implements ActionListener {
     private JButton mergeSortBtn = new JButton("MERGESORT");
     private JButton bubbleSortBtn = new JButton("BUBBLESORT");
     private JButton heapSortBtn = new JButton("HEAPSORT");
+    private JButton rafSortBtn = new JButton("RAFsort");
     private JButton shufflerBtn = new JButton("SHUFFLE");
     private JComboBox<String> sorters = new JComboBox<>();
     private Visualizator visualizator;
@@ -32,10 +34,12 @@ public class CommandView extends JPanel implements ActionListener {
         bubbleSortBtn.setPreferredSize(new Dimension(130,25));
         heapSortBtn.setPreferredSize(new Dimension(120,25));
         shufflerBtn.setPreferredSize(new Dimension(120,25));
+        rafSortBtn.setPreferredSize(new Dimension(120,25));
         this.add(qucikSortBtn);
         this.add(mergeSortBtn);
         this.add(bubbleSortBtn);
         this.add(heapSortBtn);
+        this.add(rafSortBtn);
         this.add(shufflerBtn);
 
     }
@@ -43,6 +47,7 @@ public class CommandView extends JPanel implements ActionListener {
         qucikSortBtn.addActionListener(this);
         bubbleSortBtn.addActionListener(this);
         shufflerBtn.addActionListener(this);
+        rafSortBtn.addActionListener(this);
     }
 
     @Override
@@ -58,6 +63,10 @@ public class CommandView extends JPanel implements ActionListener {
         else if(actionEvent.getActionCommand().equals("SHUFFLE")) {
             Shuffler.shuffler(visualizator.array);
             visualizator.repaint();
+        }
+        else if(actionEvent.getActionCommand().equals("RAFsort")){
+            visualizator.setAlgo(new RafSort());
+            visualizator.startSorting();
         }
 
     }

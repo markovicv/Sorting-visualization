@@ -3,17 +3,16 @@ package algorithms;
 import ui.Visualizator;
 import utils.Swaper;
 
-public class BubbleSort implements Sorter{
+public class RafSort implements Sorter {
     private Visualizator visualizator;
     private int[] array;
 
-    public BubbleSort(Visualizator visualizator){
-        this.visualizator = visualizator;
+    public RafSort(Visualizator visualizator){
+        this.visualizator=visualizator;
     }
-    public BubbleSort(){
+    public RafSort(){
 
     }
-
 
 
     @Override
@@ -37,22 +36,14 @@ public class BubbleSort implements Sorter{
 
     @Override
     public void run() {
-        boolean swaped = false;
-
-        for(int i=0;i<array.length-1;i++){
-            swaped = false;
-            for(int j = 0;j<array.length-1;j++){
-                if(array[j]>array[j+1]){
-                    Swaper.swap(j,j+1,array);
-                    swaped = true;
+        for(int i=0; i<array.length;i++){
+            for(int j = i+1;j<array.length;j++){
+                if(array[i] > array[j]){
+                    Swaper.swap(i,j,array);
                     visualizator.repaint();
                     mySleep(2);
-
                 }
             }
-            if(!swaped)
-                break;
         }
-
     }
 }
