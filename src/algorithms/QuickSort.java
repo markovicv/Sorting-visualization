@@ -1,15 +1,10 @@
 package algorithms;
-
-import ui.Visualizator;
+import observer.Observer;
 import utils.Swaper;
 
-public class QuickSort implements Sorter {
-    private Visualizator visualizator;
-    private int[] array;
+public class QuickSort extends SortManager {
 
-    public QuickSort(Visualizator visualizator){
-        this.visualizator = visualizator;
-    }
+
     public QuickSort(){
 
 
@@ -22,12 +17,12 @@ public class QuickSort implements Sorter {
             while(array[right]>pivot)
                 right--;
             if(left<=right) {
-
+                notifyObservers();
+                sleep(sleepTime);
                 Swaper.swap(left, right, array);
                 left++;
                 right--;
-                visualizator.repaint();
-                mySleep(2);
+
             }
 
         }
@@ -45,28 +40,20 @@ public class QuickSort implements Sorter {
 
     }
 
+
     @Override
-    public void run() {
+    public void sort() {
+        this.isSorting = true;
         quickSort(array,0,array.length-1);
+        this.isSorting = false;
+
     }
 
-    @Override
-    public void mySleep(int seconds) {
-        try{
-            Thread.sleep(seconds);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+    public int[] getArray() {
+        return array;
     }
 
-    @Override
     public void setArray(int[] array) {
         this.array = array;
-    }
-
-    @Override
-    public void setVisualizator(Visualizator visualizator) {
-        this.visualizator =visualizator;
     }
 }

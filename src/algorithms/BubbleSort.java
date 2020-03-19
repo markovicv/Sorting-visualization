@@ -3,40 +3,18 @@ package algorithms;
 import ui.Visualizator;
 import utils.Swaper;
 
-public class BubbleSort implements Sorter{
-    private Visualizator visualizator;
-    private int[] array;
+public class BubbleSort extends SortManager{
 
-    public BubbleSort(Visualizator visualizator){
-        this.visualizator = visualizator;
-    }
     public BubbleSort(){
 
     }
 
-
-
     @Override
-    public void mySleep(int seconds) {
-        try {
-            Thread.sleep(seconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void sort() {
+        bubbleSort();
     }
 
-    @Override
-    public void setVisualizator(Visualizator visualizator) {
-        this.visualizator = visualizator;
-    }
-
-    @Override
-    public void setArray(int[] array) {
-        this.array = array;
-    }
-
-    @Override
-    public void run() {
+    public void bubbleSort() {
         boolean swaped = false;
 
         for(int i=0;i<array.length-1;i++){
@@ -45,8 +23,8 @@ public class BubbleSort implements Sorter{
                 if(array[j]>array[j+1]){
                     Swaper.swap(j,j+1,array);
                     swaped = true;
-                    visualizator.repaint();
-                    mySleep(2);
+                    notifyObservers();
+                    sleep(2);
 
                 }
             }

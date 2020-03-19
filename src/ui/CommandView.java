@@ -3,7 +3,6 @@ package ui;
 import algorithms.BubbleSort;
 import algorithms.QuickSort;
 import algorithms.RafSort;
-import utils.Shuffler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,12 +55,12 @@ public class CommandView extends JPanel implements ActionListener {
             visualizator.setAlgo(new QuickSort());
             visualizator.startSorting();
         }
-        else if(actionEvent.getActionCommand().equals("BUBBLESORT")){
+       else if(actionEvent.getActionCommand().equals("BUBBLESORT")){
             visualizator.setAlgo(new BubbleSort());
             visualizator.startSorting();
         }
         else if(actionEvent.getActionCommand().equals("SHUFFLE")) {
-            Shuffler.shuffler(visualizator.array);
+            visualizator.shuffle(visualizator.array);
             visualizator.repaint();
         }
         else if(actionEvent.getActionCommand().equals("RAFsort")){

@@ -2,24 +2,18 @@ package algorithms;
 
 import ui.Visualizator;
 
-public class HeapSort implements Sorter {
-    @Override
-    public void mySleep(int seconds) {
+public class HeapSort extends SortManager {
 
+    public HeapSort() {
     }
 
     @Override
-    public void setVisualizator(Visualizator visualizator) {
+    public void sort() {
 
     }
 
-    @Override
-    public void setArray(int[] array) {
 
-    }
-
-    @Override
-    public void run() {
+    private void heapSort(){
 
     }
 }
