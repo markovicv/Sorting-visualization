@@ -1,6 +1,5 @@
 package algorithms;
 
-import ui.Visualizator;
 import utils.Swaper;
 
 public class BubbleSort extends SortManager{

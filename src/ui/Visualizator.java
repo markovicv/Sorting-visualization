@@ -57,11 +57,15 @@ public class Visualizator extends JPanel implements Observer {
 
     public void setAlgo(SortManager algo) {
         this.algo = algo;
-        this.algo.setSleepTime(2);
         this.algo.addObserver(this);
         this.algo.setArray(array);
 
 
+    }
+    public void setAlgoSleepTime(int milliseonds){
+        if(this.algo!=null){
+            this.algo.setSleepTime(milliseonds);
+        }
     }
     public void startSorting(){
         if(algo.isSorting){

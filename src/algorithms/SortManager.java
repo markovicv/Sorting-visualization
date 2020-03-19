@@ -1,7 +1,7 @@
 package algorithms;
-
 import observer.Observable;
 import observer.Observer;
+import utils.Konstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class SortManager implements Observable,Runnable {
     protected List<Observer> observers = new ArrayList<>();
     protected int[] array;
-    protected int sleepTime;
+    protected int sleepTime = Konstants.SLIDER_DEFAULT_SPEED;
     public boolean isSorting = false;
 
 

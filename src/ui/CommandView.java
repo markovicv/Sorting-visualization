@@ -5,6 +5,8 @@ import algorithms.QuickSort;
 import algorithms.RafSort;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +18,8 @@ public class CommandView extends JPanel implements ActionListener {
     private JButton heapSortBtn = new JButton("HEAPSORT");
     private JButton rafSortBtn = new JButton("RAFsort");
     private JButton shufflerBtn = new JButton("SHUFFLE");
+    private JSlider slider = new JSlider(1,100,30);
+
     private JComboBox<String> sorters = new JComboBox<>();
     private Visualizator visualizator;
 
@@ -40,13 +44,24 @@ public class CommandView extends JPanel implements ActionListener {
         this.add(heapSortBtn);
         this.add(rafSortBtn);
         this.add(shufflerBtn);
-
+        this.add(slider);
+        slider.setPaintTrack(true);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setMajorTickSpacing(99);
+        slider.setMinorTickSpacing(1);
     }
     private void listeners(){
         qucikSortBtn.addActionListener(this);
         bubbleSortBtn.addActionListener(this);
         shufflerBtn.addActionListener(this);
         rafSortBtn.addActionListener(this);
+        slider.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                visualizator.setAlgoSleepTime(slider.getValue());
+            }
+        });
     }
 
     @Override
