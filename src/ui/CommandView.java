@@ -18,7 +18,9 @@ public class CommandView extends JPanel implements ActionListener {
     private JButton heapSortBtn = new JButton("HEAPSORT");
     private JButton rafSortBtn = new JButton("RAFsort");
     private JButton shufflerBtn = new JButton("SHUFFLE");
-    private JSlider slider = new JSlider(1,100,30);
+    private JSlider slider = new JSlider(0,50,25);
+    private JButton colorBtn = new JButton("COLOR");
+    private JColorChooser colorChooser = new JColorChooser();
 
     private JComboBox<String> sorters = new JComboBox<>();
     private Visualizator visualizator;
@@ -38,24 +40,27 @@ public class CommandView extends JPanel implements ActionListener {
         heapSortBtn.setPreferredSize(new Dimension(120,25));
         shufflerBtn.setPreferredSize(new Dimension(120,25));
         rafSortBtn.setPreferredSize(new Dimension(120,25));
+        colorBtn.setPreferredSize(new Dimension(120,25));
         this.add(qucikSortBtn);
         this.add(mergeSortBtn);
         this.add(bubbleSortBtn);
         this.add(heapSortBtn);
         this.add(rafSortBtn);
         this.add(shufflerBtn);
+        this.add(colorBtn);
         this.add(slider);
         slider.setPaintTrack(true);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
-        slider.setMajorTickSpacing(99);
-        slider.setMinorTickSpacing(1);
+        slider.setMajorTickSpacing(49);
+        slider.setMinorTickSpacing(0);
     }
     private void listeners(){
         qucikSortBtn.addActionListener(this);
         bubbleSortBtn.addActionListener(this);
         shufflerBtn.addActionListener(this);
         rafSortBtn.addActionListener(this);
+        colorBtn.addActionListener(this);
         slider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
@@ -81,6 +86,11 @@ public class CommandView extends JPanel implements ActionListener {
         else if(actionEvent.getActionCommand().equals("RAFsort")){
             visualizator.setAlgo(new RafSort());
             visualizator.startSorting();
+        }
+        else if(actionEvent.getActionCommand().equals("COLOR")){
+            Color color = JColorChooser.showDialog(this,"Choose a color",Color.RED);
+            visualizator.setColor(color);
+            visualizator.repaint();
         }
 
     }

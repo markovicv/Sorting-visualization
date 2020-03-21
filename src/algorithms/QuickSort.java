@@ -49,11 +49,5 @@ public class QuickSort extends SortManager {
 
     }
 
-    public int[] getArray() {
-        return array;
-    }
 
-    public void setArray(int[] array) {
-        this.array = array;
-    }
 }

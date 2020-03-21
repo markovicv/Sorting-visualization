@@ -1,12 +1,11 @@
 package ui;
-
 import algorithms.SortManager;
 import observer.Observer;
 import utils.Konstants;
 import utils.Swaper;
-
 import javax.swing.*;
 import java.awt.*;
+
 import java.util.Random;
 
 
@@ -17,15 +16,21 @@ public class Visualizator extends JPanel implements Observer {
     private Thread sortingThread;
     private boolean algorithmIsSorting = false;
     private Random random;
+    private Color color = new Color(255,0,0);
 
     public Visualizator(){
         this.random = new Random();
-        for(int i=0;i<array.length;i++)
-            array[i] = i;
+        for(int i=1;i<array.length;i++)
+            array[i-1] = i;
         this.shuffle(array);
 
 
 
+
+    }
+    @Override
+    public void update() {
+        this.repaint();
     }
 
     @Override
@@ -40,13 +45,14 @@ public class Visualizator extends JPanel implements Observer {
             int xbeg = i*Konstants.BAR_WIDTH;
             int ybeg = Konstants.HEIGHT - h - 100;
 
-            int dif = (int)((1.0 * i / Konstants.NUMER_OF_BARS) * Konstants.RGB_MAX);
-       //
-          //  int dif = 0;
-            graphics2D.setColor(new Color((dif * 7)%255,Konstants.RGB_MAX-(dif * 2)%Konstants.RGB_MAX,Konstants.RGB_MAX-dif / 5));
-          //  graphics2D.fillRect(xbeg,ybeg,Konstants.BAR_WIDTH,h);
-          //  graphics2D.fillOval(xbeg,ybeg,Konstants.BAR_WIDTH,h);
-            graphics2D.fillRect(xbeg,ybeg,5,5);
+            //int dif = 0;
+          //  graphics2D.setColor(new Color((dif * 7)%255,Konstants.RGB_MAX-(dif * 2)%Konstants.RGB_MAX,Konstants.RGB_MAX-dif / 5));
+
+            graphics2D.setColor(color);
+            graphics2D.fillRect(xbeg,ybeg,Konstants.BAR_WIDTH,h);
+            //graphics2D.fillRect(0,50,5,h);
+        //    graphics2D.fillOval(xbeg,ybeg,2,h);
+          //  graphics2D.fillRect(xbeg,ybeg,5,5);
         }
 
     }
@@ -90,8 +96,11 @@ public class Visualizator extends JPanel implements Observer {
 
     }
 
-    @Override
-    public void update() {
-        this.repaint();
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

@@ -1,7 +1,4 @@
 package ui;
-
-import algorithms.BubbleSort;
-import algorithms.QuickSort;
 import utils.Konstants;
 
 import javax.swing.*;
@@ -24,7 +21,7 @@ public class VisuUI extends JFrame {
         visualizator = new Visualizator();
         commandView = new CommandView(visualizator);
         visualizator.setPreferredSize(new Dimension(Konstants.WIDTH,800));
-        commandView.setPreferredSize(new Dimension(Konstants.WIDTH,100));
+        commandView.setPreferredSize(new Dimension(Konstants.WIDTH,67));
 
       //  visualizator.repaint();
         this.add(visualizator,BorderLayout.CENTER);

@@ -1,13 +1,14 @@
 package algorithms;
 
-import ui.Visualizator;
 import utils.Swaper;
 
 public class RafSort extends SortManager {
 
     @Override
     public void sort(){
+        this.isSorting = true;
         rafSort();
+        this.isSorting = false;
     }
 
     private void rafSort() {
@@ -16,7 +17,7 @@ public class RafSort extends SortManager {
                 if(array[i] > array[j]){
                     Swaper.swap(i,j,array);
                     notifyObservers();
-                    sleep(2);
+                    sleep(sleepTime);
                 }
             }
         }
