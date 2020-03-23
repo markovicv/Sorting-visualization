@@ -5,13 +5,15 @@ import utils.Konstants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class SortManager implements Observable,Runnable {
     protected List<Observer> observers = new ArrayList<>();
     protected int[] array;
-    protected int sleepTime = Konstants.SLIDER_DEFAULT_SPEED;
+    protected int sleepTime;
     public boolean isSorting = false;
-
+    protected AtomicBoolean pauserSorting = new AtomicBoolean(false);
+    protected Object lock = new Object();
 
 
     public void sleep(int miliseconds){
@@ -22,6 +24,15 @@ public abstract class SortManager implements Observable,Runnable {
         }
 
 
+    }
+    public void stop(){
+        this.pauserSorting.set(true);
+    }
+    public void resume(){
+        this.pauserSorting.set(false);
+        synchronized (lock) {
+            lock.notify();
+        }
     }
 
     @Override
@@ -50,6 +61,7 @@ public abstract class SortManager implements Observable,Runnable {
         this.sleepTime = time;
     }
 
-
-
+    public int getSleepTime() {
+        return sleepTime;
+    }
 }

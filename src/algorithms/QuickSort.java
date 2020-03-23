@@ -1,5 +1,4 @@
 package algorithms;
-import observer.Observer;
 import utils.Swaper;
 
 public class QuickSort extends SortManager {
@@ -10,18 +9,25 @@ public class QuickSort extends SortManager {
 
     }
 
-    private int getIndex(int pivot,int left,int right,int[] array){
+    private int getIndex(int pivot,int left,int right,int[] array) throws Exception{
         while(left<=right){
             while(array[left]<pivot)
                 left++;
             while(array[right]>pivot)
                 right--;
             if(left<=right) {
-                notifyObservers();
-                sleep(sleepTime);
+                if(pauserSorting.get()){
+                    synchronized (lock){
+                        lock.wait();
+                    }
+                }
+
                 Swaper.swap(left, right, array);
                 left++;
                 right--;
+                notifyObservers();
+                sleep(sleepTime);
+                System.out.println(sleepTime);
 
             }
 
@@ -30,7 +36,7 @@ public class QuickSort extends SortManager {
     }
 
 
-    private void quickSort(int[] array,int lo,int hi){
+    private void quickSort(int[] array,int lo,int hi) throws Exception{
         if(lo>=hi)
             return;
         int pivot = array[(lo+hi)/2];
@@ -44,7 +50,11 @@ public class QuickSort extends SortManager {
     @Override
     public void sort() {
         this.isSorting = true;
-        quickSort(array,0,array.length-1);
+        try {
+            quickSort(array,0,array.length-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         this.isSorting = false;
 
     }

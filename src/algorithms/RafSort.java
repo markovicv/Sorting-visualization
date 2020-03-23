@@ -18,6 +18,7 @@ public class RafSort extends SortManager {
                     Swaper.swap(i,j,array);
                     notifyObservers();
                     sleep(sleepTime);
+                    System.out.println(sleepTime);
                 }
             }
         }
