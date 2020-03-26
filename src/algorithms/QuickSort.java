@@ -27,7 +27,7 @@ public class QuickSort extends SortManager {
                 right--;
                 notifyObservers();
                 sleep(sleepTime);
-                System.out.println(sleepTime);
+
 
             }
 

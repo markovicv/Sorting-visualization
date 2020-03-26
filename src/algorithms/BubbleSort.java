@@ -10,20 +10,29 @@ public class BubbleSort extends SortManager{
 
     @Override
     public void sort() {
-        bubbleSort();
+        try {
+            bubbleSort();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void bubbleSort() {
+    public void bubbleSort() throws Exception {
         boolean swaped = false;
 
         for(int i=0;i<array.length-1;i++){
             swaped = false;
             for(int j = 0;j<array.length-1;j++){
                 if(array[j]>array[j+1]){
+                    if(pauserSorting.get()){
+                        synchronized (lock){
+                            lock.wait();
+                        }
+                    }
                     Swaper.swap(j,j+1,array);
                     swaped = true;
                     notifyObservers();
-                    sleep(2);
+                    sleep(sleepTime);
 
                 }
             }

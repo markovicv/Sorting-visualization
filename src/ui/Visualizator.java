@@ -52,7 +52,7 @@ public class Visualizator extends JPanel implements Observer {
           //  graphics2D.setColor(new Color((dif * 7)%255,Konstants.RGB_MAX-(dif * 2)%Konstants.RGB_MAX,Konstants.RGB_MAX-dif / 5));
 
             graphics2D.setColor(color);
-         //   graphics2D.fillRect(xbeg,ybeg,Konstants.BAR_WIDTH,h);
+            graphics2D.fillRect(xbeg,ybeg,Konstants.BAR_WIDTH,h);
             //graphics2D.fillRect(0,50,5,h);
         //    graphics2D.fillOval(xbeg,ybeg,2,h);
           //  graphics2D.fillRect(xbeg,ybeg,5,5);
