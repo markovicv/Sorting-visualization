@@ -1,5 +1,5 @@
 package algorithms;
-import utils.Swaper;
+
 
 public class QuickSort extends SortManager {
 
@@ -22,7 +22,7 @@ public class QuickSort extends SortManager {
                     }
                 }
 
-                Swaper.swap(left, right, array);
+                this.swap(left, right, array);
                 left++;
                 right--;
                 notifyObservers();

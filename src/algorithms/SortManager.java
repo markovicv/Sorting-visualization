@@ -16,7 +16,7 @@ public abstract class SortManager implements Observable,Runnable {
     protected Object lock = new Object();
 
 
-    public void sleep(int miliseconds){
+    protected void sleep(int miliseconds){
         try {
             Thread.sleep(miliseconds);
         } catch (InterruptedException e) {
@@ -25,6 +25,13 @@ public abstract class SortManager implements Observable,Runnable {
 
 
     }
+    protected  void swap(int a,int b,int[] array){
+        int tmp = array[a];
+        array[a] = array[b];
+        array[b] = tmp;
+    }
+
+
     public void stop(){
         this.pauserSorting.set(true);
     }

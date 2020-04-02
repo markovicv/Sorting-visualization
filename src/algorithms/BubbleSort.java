@@ -1,7 +1,5 @@
 package algorithms;
 
-import utils.Swaper;
-
 public class BubbleSort extends SortManager{
 
     public BubbleSort(){
@@ -11,7 +9,9 @@ public class BubbleSort extends SortManager{
     @Override
     public void sort() {
         try {
+            this.isSorting=true;
             bubbleSort();
+            this.isSorting =false;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class BubbleSort extends SortManager{
                             lock.wait();
                         }
                     }
-                    Swaper.swap(j,j+1,array);
+                    this.swap(j,j+1,array);
                     swaped = true;
                     notifyObservers();
                     sleep(sleepTime);
