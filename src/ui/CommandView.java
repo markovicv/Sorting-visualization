@@ -32,7 +32,6 @@ public class CommandView extends JPanel  {
         this.typeComboBox = new JComboBox(icons);
         this.comboBox.setSelectedIndex(0);
 
-        this.setBackground(new Color(204,162,51));
         initWidgets();
         listeners();
 

@@ -70,6 +70,8 @@ public class Visualizator extends JPanel implements Observer {
     }
 
     public void setAlgo(SortManager algo) {
+        if(!canStart())
+            return;
         this.algo = algo;
         this.algo.addObserver(this);
         this.algo.setArray(array);
@@ -83,18 +85,15 @@ public class Visualizator extends JPanel implements Observer {
 
     }
     public void startSorting(){
-        if(algo.isSorting){
-            return;
-        }
+       if(!canStart())
+           return;
         sortingThread = new Thread(algo);
         executorService.submit(sortingThread);
 
     }
     public void shuffle(int[] array){
-        if(this.algo!=null){
-            if(this.algo.isSorting)
-                return;
-        }
+       if(!canStart())
+           return;
 
         int n = array.length-1;
         Random random = new Random();
@@ -125,5 +124,13 @@ public class Visualizator extends JPanel implements Observer {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+    private boolean canStart(){
+        if(this.algo!=null){
+            if(this.algo.isSorting){
+                return false;
+            }
+        }
+        return true;
     }
 }
