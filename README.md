@@ -1,7 +1,7 @@
 # Sorting Visualizator
 
 ### Project overview:
-Projects shows a visualization of common sorting algorithms which are used in computer science. It allows you to pause,resume and start a certain algorithm, 
+Project shows a visualization of common sorting algorithms which are used in computer science. It allows you to pause,resume and start a certain algorithm, 
 change the color of the visualization, increase or decrase the speed of sorting and choose which type of visualization you want.
 
 ### Technology and implementation:
